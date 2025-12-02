@@ -1,0 +1,14 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Учебный REST API для заметок (CRUD).",
+        "title": "Notes API",
+        "contact": {
+            "name": "Backend Course",
+            "email": "example@university.ru"
+        },
+        "version": "1.0"
+    },
+    "basePath": "/api/v1",
+    "paths": {}
+}
