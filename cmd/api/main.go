@@ -6,7 +6,6 @@
 // @contact.name    Backend Course
 // @contact.email   example@university.ru
 // @BasePath        /api/v1
-
 package main
 
 import (

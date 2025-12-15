@@ -33,13 +33,11 @@ type UpdateNoteRequest struct {
 // @Tags         notes
 // @Accept       json
 // @Produce      json
-// @Param        input  body     NoteCreate  true  "Данные новой заметки"
+// @Param        input  body     core.Note  true  "Данные новой заметки"
 // @Success      201    {object} core.Note
 // @Failure      400    {object} map[string]string
 // @Failure      500    {object} map[string]string
 // @Router       /notes [post]
-
-// CreateNote создает новую заметку
 func (h *Handler) CreateNote(w http.ResponseWriter, r *http.Request) {
 	var n core.Note
 
@@ -75,8 +73,6 @@ func (h *Handler) CreateNote(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {object}  core.Note
 // @Failure      404  {object}  map[string]string
 // @Router       /notes/{id} [get]
-
-// GetNote возвращает заметку по ID
 func (h *Handler) GetNote(w http.ResponseWriter, r *http.Request) {
 	idStr := chi.URLParam(r, "id")
 	id, err := strconv.ParseInt(idStr, 10, 64)
@@ -109,8 +105,6 @@ func (h *Handler) GetNote(w http.ResponseWriter, r *http.Request) {
 // @Header       200    {integer}  X-Total-Count  "Общее количество"
 // @Failure      500    {object}  map[string]string
 // @Router       /notes [get]
-
-// GetAllNotes возвращает все заметки
 func (h *Handler) ListNotes(w http.ResponseWriter, r *http.Request) {
 	notes, err := h.Repo.GetAll()
 	if err != nil {
@@ -130,13 +124,11 @@ func (h *Handler) ListNotes(w http.ResponseWriter, r *http.Request) {
 // @Tags         notes
 // @Accept       json
 // @Param        id     path   int        true  "ID"
-// @Param        input  body   NoteUpdate true  "Поля для обновления"
+// @Param        input  body   core.Note true  "Поля для обновления"
 // @Success      200    {object}  core.Note
 // @Failure      400    {object}  map[string]string
 // @Failure      404    {object}  map[string]string
 // @Router       /notes/{id} [patch]
-
-// PatchNote - частичное обновление (PATCH)
 func (h *Handler) PatchNote(w http.ResponseWriter, r *http.Request) {
 	idStr := chi.URLParam(r, "id")
 	id, err := strconv.ParseInt(idStr, 10, 64)
@@ -195,8 +187,6 @@ func (h *Handler) PatchNote(w http.ResponseWriter, r *http.Request) {
 // @Success      204  "No Content"
 // @Failure      404  {object}  map[string]string
 // @Router       /notes/{id} [delete]
-
-// DeleteNote удаляет заметку
 func (h *Handler) DeleteNote(w http.ResponseWriter, r *http.Request) {
 	idStr := chi.URLParam(r, "id")
 	id, err := strconv.ParseInt(idStr, 10, 64)
